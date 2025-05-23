@@ -64,6 +64,8 @@ the necessary specificity needed for actual DataCite submission):
       * Contributor: A list of contributors to this version of InVEST
       * Date: The release date of the software.  Additional dates related to the release can also be described, but are probably not needed for InVEST.
       * Language: EN until we added ES and ZH support.
+        * NOTE: only 1 language is allowed (primary language)
+        * Unclear how to add additional languages at this time.
       * AlternateIdentifier: unused until we have something to put here.
       * RelatedIdentifier: unused until we have DOIs of related resources to link to.  Maybe papers that describe models?
       * Size: unused unless this is the only place we can define the size of items.
@@ -71,3 +73,5 @@ the necessary specificity needed for actual DataCite submission):
       * Version: The version number for the release
       * Rights: The license string summarizing the license
       * Description: Any additional information that doesn't fit into any other categories.
+
+An example of the DataCite API object is here: https://api.datacite.org/dois/10.5438/0014
