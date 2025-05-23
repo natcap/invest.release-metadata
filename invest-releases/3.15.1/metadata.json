@@ -1,10 +1,10 @@
 {
-        "creator": "{{toplevel.creator}}",
-        "title": "{{toplevel.titles}}",
-        "publisher": "{{toplevel.publisher}}",
+        "creator": "{{creator}}",
+        "title": "{{titles}}",
+        "publisher": "{{publisher}}",
         "publicationyear": "2025",
         "resourcetype": "Software",
-        "subject": "{{toplevel.subjects}}",
+        "subject": "{{subjects}}",
         "date": "2025-05-06",
-        "language": "{{toplevel.language}}"
+        "language": "{{language}}"
 }
