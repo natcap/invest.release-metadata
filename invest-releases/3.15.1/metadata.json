@@ -3,7 +3,7 @@
         "titles": "{{titles}}",
         "publisher": "{{publisher}}",
         "publicationYear": "2025",
-        "resourceType": "{{resourceType}}",
+        "types": "{{types}}",
         "subjects": "{{subjects}}",
         "date": "2025-05-06",
         "language": "{{language}}"
