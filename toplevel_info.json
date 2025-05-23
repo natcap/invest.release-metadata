@@ -1,0 +1,55 @@
+{
+        "creator": {
+                "creatorName": "Natural Capital Project",
+                "nameType": "Organizational",
+                "affiliation": [
+                        {
+                                "affiliationIdentifier": "https://ror.org/00f54p054",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        },
+                        {
+                                "affiliationIdentifier": "https://ror.org/03rpsvy57",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        },
+                        {
+                                "affiliationIdentifier": "https://ror.org/00j62qv07",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        },
+                        {
+                                "affiliationIdentifier": "https://ror.org/0145rpw38",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        },
+                        {
+                                "affiliationIdentifier": "https://ror.org/0563w1497",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        },
+                        {
+                                "affiliationIdentifier": "https://ror.org/017zqws13",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        },
+                        {
+                                "affiliationIdentifier": "https://ror.org/011590k05",
+                                "affiliationIdentifierScheme": "ROR",
+                                "schemeURI": "https://ror.org"
+                        }
+                ]
+        },
+        "titles": [
+                {
+                        "title": "InVEST"
+                },
+                {
+                        "title": "Integrated Valuation of Ecosystem Services and Tradeoffs",
+                        "titleType": "Subtitle"
+                }
+        ],
+        "publisher": "GitHub",
+        "subjects": [],
+        "language": "en"
+}
