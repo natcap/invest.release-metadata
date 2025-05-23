@@ -45,3 +45,29 @@ extend this for the forthcoming InVEST 3.16.0 release.
 
 * Build metadata pages for all 150+ InVEST releases and flesh them out with
   appropriate details of people, institutions and grants involved.
+
+
+## Notes w/r/t the DataCite Metadata Properties
+
+For all InVEST versions, we assume the following information (expanded to meet
+the necessary specificity needed for actual DataCite submission):
+
+    * Required Properties:
+      * Identifier: this is the DataCite DOI
+      * Creator: the Natural Capital Project (the legal partner institutions, if needed)
+      * Title: "InVEST: Integrated Valuation of Ecosystem Services and Tradeoffs"
+      * Publisher: GitHub (probably)
+      * PublicationYear: <year of publication>
+      * ResourceType: software (or appropriate equivalent)
+    * Recommended and Optional Properties:
+      * Subject: Ecosystem Services or some other phrase(s)/classifications, etc. describing InVEST and linking to other schemes
+      * Contributor: A list of contributors to this version of InVEST
+      * Date: The release date of the software.  Additional dates related to the release can also be described, but are probably not needed for InVEST.
+      * Language: EN until we added ES and ZH support.
+      * AlternateIdentifier: unused until we have something to put here.
+      * RelatedIdentifier: unused until we have DOIs of related resources to link to.  Maybe papers that describe models?
+      * Size: unused unless this is the only place we can define the size of items.
+      * Format: The MIME type of different binaries for the release
+      * Version: The version number for the release
+      * Rights: The license string summarizing the license
+      * Description: Any additional information that doesn't fit into any other categories.
