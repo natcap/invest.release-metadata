@@ -75,3 +75,6 @@ the necessary specificity needed for actual DataCite submission):
       * Description: Any additional information that doesn't fit into any other categories.
 
 An example of the DataCite API object is here: https://api.datacite.org/dois/10.5438/0014
+
+And exmaple that uses the json api and that is in the datacite api docs:
+https://datacite-metadata-schema.readthedocs.io/en/4.5/guidance/related-item-guide/#example-journal-article-in-a-journal-with-an-issn

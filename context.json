@@ -1,5 +1,6 @@
 {
-        "creator": {
+        "creators": [
+            {
                 "creatorName": "Natural Capital Project",
                 "nameType": "Organizational",
                 "affiliation": [
@@ -39,12 +40,19 @@
                                 "schemeURI": "https://ror.org"
                         }
                 ]
+            }
+        ],
+        "types": {
+            "resourceType": "Software Package",
+            "resourceTypeGeneral": "Software"
         },
         "titles": [
                 {
+                        "lang": "en",
                         "title": "InVEST"
                 },
                 {
+                        "lang": "en",
                         "title": "Integrated Valuation of Ecosystem Services and Tradeoffs",
                         "titleType": "Subtitle"
                 }
