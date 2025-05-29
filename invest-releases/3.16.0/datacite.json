@@ -2,8 +2,8 @@
     "data": {
         "type": "dois",
         "attributes": {
-            "url": "https://github.com/natcap/invest/releases/3.16.0",
-            "doi": "10.60793/invest-3.16.0",
+            "url": "https://natcap.github.io/invest.release-metadata/3.16.0.html",
+            "doi": "10.60793/natcap-invest-3.16.0",
             "creators": [
                 {
                     "creatorName": "Natural Capital Project",
