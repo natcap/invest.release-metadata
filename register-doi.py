@@ -1,31 +1,22 @@
+import argparse
 import json
+import os
 import sys
 
 import clean_json  # from local file
 import requests
 import requests.exceptions
 
-TEST = '--test' in sys.argv
-PUBLISH = '--publish' in sys.argv
-AUTH_DATA = json.load(open('.env.json'))
 HEADERS = {
     'accept': 'application/vnd.api+json',
     "content-type": "application/json",
 }
 
-def register(datacite_json_path):
+
+def register(datacite_json_path, endpoint, auth_string, prefix, publish):
     datacite_json = clean_json.clean(json.load(open(datacite_json_path)))
 
-    if TEST:
-        endpoint = 'https://api.test.datacite.org'
-        user = AUTH_DATA['datacite_test_user']
-        prefix = "10.80394"
-    else:
-        endpoint = 'https://api.datacite.org'
-        user = AUTH_DATA['datacite_user']
-        prefix = "10.60793"
-
-    auth = tuple(user.split(':'))  # Hub, requests DEMANDS a tuple
+    auth = tuple(auth_string.split(':'))  # Hub, requests DEMANDS a tuple
 
     # there are different prefixes associated with prod and test accounts, so
     # set it appropriately here.
@@ -46,7 +37,7 @@ def register(datacite_json_path):
     except KeyError:
         datacite_json['data']['attributes']['prefix'] = prefix
 
-    if PUBLISH:
+    if publish:
         datacite_json['data']['attributes']['event'] = "publish"
 
     print(json.dumps(datacite_json, indent=4, sort_keys=True))
@@ -79,5 +70,46 @@ def register(datacite_json_path):
             html.write(resp.text)
 
 
+def main():
+    parser = argparse.ArgumentParser(
+        prog=os.path.basename(__file__),
+        description="Create, update and/or publish a DOI",
+    )
+    parser.add_argument(
+        'datacite_json', help="The filepath of a datacite JSON file.")
+    parser.add_argument(
+        '--test', action='store_true', help=(
+            'Whether to create/update the DOI on the Fabrica test instance. '
+            'If omitted, the production Fabrica instance will be used.'))
+    parser.add_argument(
+        '--publish', action='store_true', help=(
+            'Whether to publish the DOI on the target datacite instance.'))
+    parser.add_argument(
+        '--auth-json', default=".env.json", help=(
+            "The filepath to a json file containing usernames and passwords "
+            "for authenticating into the Fabrican instance.  The JSON object "
+            "in this file must have the key 'datacite_user' if accessing the "
+            "production instance, and 'datacite_test_user' if accessing the "
+            "test instance.  In both cases, the key must map to a value that "
+            "has the form 'username:password'. Defaults to '.env.json'"))
+
+    args = parser.parse_args()
+
+    with open(args.auth_json) as auth_json_file:
+        auth_data = json.load(auth_json_file)
+
+    if args.test:
+        endpoint = 'https://api.test.datacite.org'
+        auth_string = auth_data['datacite_test_user']
+        prefix = "10.80394"
+    else:
+        endpoint = 'https://api.datacite.org'
+        auth_string = auth_data['datacite_user']
+        prefix = "10.60793"
+
+    return (args.datacite_json, endpoint, auth_string, prefix, args.publish)
+
+
 if __name__ == '__main__':
-    register(sys.argv[1])
+    datacite_json, endpoint, user, prefix, publish = main()
+    register(datacite_json, endpoint, user, prefix, publish)
