@@ -1,0 +1,54 @@
+name: Create new DOI for an InVEST release
+
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: The InVEST version for which we're creating a DOI.
+                required: true
+                type: string
+            datacite_instance:
+                description: The target DataCite Fabrica instance.
+                required: true
+                default: 'test'
+                options:
+                    - test
+                    - production
+            publish:
+                description: If checked, DOI will be published and immutable.  Metadata is always mutable.
+                required: false
+                type: boolean
+
+permissions:
+    contents: write
+
+concurrency:
+    cancel-in-progress: false
+
+jobs:
+    execute:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+            - name: Set up python
+              uses: actions/setup-python@v6
+              with:
+                  python-version: 3.12
+            - name: Install dependencies
+              run: pip install -r requirements.txt
+            #- name: Create new files in repo
+            #- name: Commit new changes
+            - name: Push changes
+              run: git push origin main
+            - name: Create the DOI on DataCite
+              run: |
+                  if [[ {{ inputs.publish }} ]]
+                  then
+                    PUBLISH="--publish"
+                  fi
+                  if [[ "{{ inputs.datacite_instance }}" = "test" ]]
+                  then
+                    INSTANCE="--test"
+                  fi
+                  python register-doi.py $INSTANCE $PUBLISH
