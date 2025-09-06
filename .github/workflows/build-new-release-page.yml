@@ -51,4 +51,4 @@ jobs:
                   then
                     INSTANCE="--test"
                   fi
-                  python register-doi.py $INSTANCE $PUBLISH
+                  python register-doi.py $INSTANCE $PUBLISH invest-releases/{{ env.VERSION }}/datacite.json
