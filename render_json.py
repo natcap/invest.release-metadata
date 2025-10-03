@@ -4,7 +4,7 @@ To install dependencies:
     $ pip install -r requirements.txt
 
 Example usage:
-    $ python render_json.py invest-releases/3.15.1/metadata.json context.json
+    $ python render_json.py invest-releases/3.15.1/datacite.json context.json
 """
 
 
