@@ -10,37 +10,28 @@ Example usage:
 import argparse
 import json
 import os
-import sys
 
 from jinja2 import Template
 
 
-def render_with_context(source_json, context_json):
-    """Render a source json file given a context.
+def render_jinja(source_file: str, context: dict):
+    """Render a templated Jinja file given a dictionary.
 
     The rendered file is printed to stdout.
 
     Args:
-        source_json (str): The filepath to a json file that has jinja2 template
-            strings given keys in the context file.
-        context_json (str): The filepath to a json file that has the context
-            needed to be able to render the source_json file.
+        source_file (str): The filepath to a file that includes jinja2 template
+            strings.
+        context (dict): A dictionary of keys mapping to values, where the keys
+            are used in the source file template.
 
     Returns:
         ``None``
     """
-    with open(context_json) as context_file:
-        context = json.load(context_file)
-
-    with open(source_json) as source_file:
-        template = Template(source_file.read())
+    with open(source_file) as source_fp:
+        template = Template(source_fp.read())
         print(template.render(context))
 
-
-# Need way to provide extra context attributes
-# --context=year:2025
-# --context=version:3.16.3
-# --context=prefix:10.2139487o3241
 
 def main(args=None):
     parser = argparse.ArgumentParser(
@@ -50,13 +41,15 @@ def main(args=None):
     parser.add_argument('--variable', nargs='*', help=(
         'A variable name and its value to be passed in to the template. '
         'This can be provided multiple times. '
-        'For example, --variable=key:value --variable=year:2025. '
+        'For example, "--variable key:value year:2025" '
         'No parsing is performed on the variable values.'
     ))
     parser.add_argument('--variable-json', nargs='?', help=(
         'The path to a JSON file representing a dict.  Top-level keys '
         'will be read as the variable names mapping to their values. '
     ))
+    parser.add_argument('--template-file', required=True, help=(
+        'The path to the Jinja2 template file to use.'))
 
     args = parser.parse_args(args)
 
@@ -78,18 +71,9 @@ def main(args=None):
                 'and the JSON file (if provided).')
         variables[var_name] = var_value
 
+    return args.template_file, variables
 
 
 if __name__ == '__main__':
-    render_with_context(sys.argv[1], sys.argv[2])
-
-# templated datacite JSON --> rendered datacite JSON --> rendered HTML
-#                             (needed by itself)
-#
-# Templated datacite would have variables:
-#   * version
-#   * year
-#   * DOI prefix
-#
-# My hope is to use this script here to render a JINJA templated file given a
-# JSON file, including any nesting needed.
+    template_file, variables = main()
+    render_jinja(template_file, variables)
