@@ -28,6 +28,9 @@ concurrency:
 jobs:
     execute:
         runs-on: ubuntu-latest
+        env:
+            NEW_DATACITE_FILE: invest-releases/{{ env.VERSION }}/datacite.json
+            NEW_HTML_FILE: html/{{ env.VERSION }}.html
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -37,8 +40,11 @@ jobs:
                   python-version: 3.12
             - name: Install dependencies
               run: pip install -r requirements.txt
-            #- name: Create new files in repo
-            #- name: Commit new changes
+            #- name: Create new files in repo but don't overwrite
+            #   # Assume that if files already exist, they've been manually edited and should continue to be manually edited.
+            - name: Commit new changes
+              run: |
+                  git add "$NEW_DATACITE_FILE" "$NEW_HTML_FILE" "html/index.html"
             - name: Push changes
               run: git push origin main
             - name: Create the DOI on DataCite
@@ -54,4 +60,4 @@ jobs:
                   then
                     INSTANCE="--test"
                   fi
-                  python register-doi.py $INSTANCE $PUBLISH invest-releases/{{ env.VERSION }}/datacite.json
+                  python register-doi.py $INSTANCE $PUBLISH $NEW_DATACITE_FILE
