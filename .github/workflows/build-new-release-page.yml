@@ -1,4 +1,4 @@
-name: Create new DOI for an InVEST release
+name: Create InVEST Release DOI
 
 on:
     workflow_dispatch:
