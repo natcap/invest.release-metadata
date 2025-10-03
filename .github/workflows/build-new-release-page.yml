@@ -30,8 +30,8 @@ jobs:
     execute:
         runs-on: ubuntu-latest
         env:
-            NEW_DATACITE_FILE: invest-releases/${{ env.VERSION }}/datacite.json
-            NEW_HTML_FILE: html/${{ env.VERSION }}.html
+            NEW_DATACITE_FILE: invest-releases/${{ inputs.version }}/datacite.json
+            NEW_HTML_FILE: html/${{ inputs.version }}.html
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -46,7 +46,7 @@ jobs:
             - name: Commit new changes
               run: |
                   git add "$NEW_DATACITE_FILE" "$NEW_HTML_FILE" "html/index.html"
-                  git commit -m "GHA: Adding new files for version ${{ env.VERSION }}"
+                  git commit -m "GHA: Adding new files for version ${{ inputs.version }}"
             - name: Push changes
               run: git push origin main
             - name: Create the DOI on DataCite
