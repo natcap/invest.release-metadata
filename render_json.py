@@ -31,7 +31,6 @@ def render_with_context(source_json, context_json):
     with open(context_json) as context_file:
         context = json.load(context_file)
 
-
     with open(source_json) as source_file:
         template = Template(source_file.read())
         print(template.render(context))
@@ -39,3 +38,14 @@ def render_with_context(source_json, context_json):
 
 if __name__ == '__main__':
     render_with_context(sys.argv[1], sys.argv[2])
+
+# templated datacite JSON --> rendered datacite JSON --> rendered HTML
+#                             (needed by itself)
+#
+# Templated datacite would have variables:
+#   * version
+#   * year
+#   * DOI prefix
+#
+# My hope is to use this script here to render a JINJA templated file given a
+# JSON file, including any nesting needed.
