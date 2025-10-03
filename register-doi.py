@@ -83,7 +83,13 @@ def main():
             'If omitted, the production Fabrica instance will be used.'))
     parser.add_argument(
         '--publish', action='store_true', help=(
-            'Whether to publish the DOI on the target datacite instance.'))
+            'Whether to publish the DOI on the target datacite instance. '
+            'Using --publish will make the DOI findable and permanent. '
+            'A published DOI cannot be deleted.  See '
+            'https://support.datacite.org/docs/doi-states for information '
+            "about DataCite's DOI states."
+        )
+    )
     parser.add_argument(
         '--auth-json', default=".env.json", help=(
             "The filepath to a json file containing usernames and passwords "

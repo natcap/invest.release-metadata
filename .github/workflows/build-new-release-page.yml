@@ -45,6 +45,9 @@ jobs:
               run: |
                   if [[ {{ inputs.publish }} ]]
                   then
+                    # Using --publish will register the DOI and also make it
+                    # findable.  See https://support.datacite.org/docs/doi-states for DOI
+                    # states and allowed actions.
                     PUBLISH="--publish"
                   fi
                   if [[ "{{ inputs.datacite_instance }}" = "test" ]]
