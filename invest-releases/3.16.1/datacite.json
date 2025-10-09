@@ -1,0 +1,84 @@
+{
+    "data": {
+        "type": "dois",
+        "attributes": {
+            "url": "https://natcap.github.io/invest.release-metadata/3.16.1.html",
+            "doi": "10.60793/natcap-invest-3.16.1",
+            "creators": [
+                {
+                    "creatorName": "Natural Capital Project",
+                    "_url": "https://naturalcapitalproject.stanford.edu",
+                    "nameType": "Organizational",
+                    "affiliation": [
+                        {
+                            "_name": "Stanford University",
+                            "_url": "https://naturalcapitalproject.stanford.edu",
+                            "affiliationIdentifier": "https://ror.org/00f54p054",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences",
+                            "_url": "http://english.rcees.cas.cn/",
+                            "affiliationIdentifier": "https://ror.org/03rpsvy57",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "Royal Swedish Academy of Sciences",
+                            "_url": "https://www.kva.se/en/",
+                            "affiliationIdentifier": "https://ror.org/00j62qv07",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "Stockholm Resilience Centre",
+                            "_url": "https://www.stockholmresilience.org/",
+                            "affiliationIdentifier": "https://ror.org/0145rpw38",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "The Nature Conservancy",
+                            "_url": "https://www.nature.org/en-us/",
+                            "affiliationIdentifier": "https://ror.org/0563w1497",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "University of Minnesota",
+                            "_url": "https://natcapteems.umn.edu/",
+                            "affiliationIdentifier": "https://ror.org/017zqws13",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "World Wildlife Fund",
+                            "_url": "https://www.worldwildlife.org/",
+                            "affiliationIdentifier": "https://ror.org/011590k05",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        }
+                    ]
+                }
+            ],
+            "titles": [
+                {
+                    "lang": "en",
+                    "title": "InVEST"
+                },
+                {
+                    "lang": "en",
+                    "title": "Integrated Valuation of Ecosystem Services and Tradeoffs",
+                    "titleType": "Subtitle"
+                }
+            ],
+            "publisher": "GitHub",
+            "publicationYear": 2025,
+            "types": {
+                "resourceType": "Software Package",
+                "resourceTypeGeneral": "Software"
+            }
+        }
+    }
+}
