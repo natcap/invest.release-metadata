@@ -2,6 +2,7 @@
     "data": {
         "type": "dois",
         "attributes": {
+            "version": "3.16.2",
             "url": "https://natcap.github.io/invest.release-metadata/3.16.2.html",
             "doi": "10.60793/natcap-invest-3.16.2",
             "creators": [
@@ -65,7 +66,7 @@
             "titles": [
                 {
                     "lang": "en",
-                    "title": "InVEST"
+                    "title": "InVEST 3.16.2"
                 },
                 {
                     "lang": "en",
@@ -75,6 +76,19 @@
             ],
             "publisher": "GitHub",
             "publicationYear": 2025,
+            "dates": {
+                "date": "2025-08-13",
+                "dateType": "Issued"
+            },
+            "rightsList": [
+                {
+                    "rights": "Apache License, Version 2.0",
+                    "rightsUri": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+                    "schemeUri": "https://spdx.org/licenses/",
+                    "rightsIdentifier": "Apache-2.0",
+                    "rightsIdentifierScheme": "SPDX"
+                }
+            ],
             "types": {
                 "resourceType": "Software Package",
                 "resourceTypeGeneral": "Software"
