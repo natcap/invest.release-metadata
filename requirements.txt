@@ -1,3 +1,2 @@
-staticjinja
 requests
 jinja2
