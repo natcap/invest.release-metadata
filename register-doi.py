@@ -1,9 +1,7 @@
 import argparse
 import json
 import os
-import sys
 
-import clean_json  # from local file
 import requests
 import requests.exceptions
 
@@ -13,8 +11,31 @@ HEADERS = {
 }
 
 
+def clean(data: dict):
+    """Strip out JSON keys that start with _.
+
+    Args:
+        data (dict): A dict loaded from a JSON file.
+
+    Returns:
+        A dict with any keys that start with ``'_'`` removed.
+    """
+    if isinstance(data, (str, int, float)):
+        return data
+    elif isinstance(data, list):
+        return [clean(item) for item in data]
+    elif isinstance(data, dict):
+        return dict(
+            (k, clean(v)) for (k, v) in data.items()
+            if not k.startswith('_'))
+    else:
+        raise ValueError(
+            f"Don't know how to sanitize {type(data)}")
+
+
 def register(datacite_json_path, endpoint, auth_string, prefix, publish):
-    datacite_json = clean_json.clean(json.load(open(datacite_json_path)))
+    with open(datacite_json_path) as datacite_json_fp:
+        datacite_json = clean(json.load(datacite_json_fp))
 
     auth = tuple(auth_string.split(':'))  # Hub, requests DEMANDS a tuple
 
