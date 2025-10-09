@@ -91,7 +91,7 @@ def register(datacite_json_path, endpoint, auth_string, prefix, publish):
             html.write(resp.text)
 
 
-def main():
+def main(args=None):
     parser = argparse.ArgumentParser(
         prog=os.path.basename(__file__),
         description="Create, update and/or publish a DOI",
@@ -120,7 +120,7 @@ def main():
             "test instance.  In both cases, the key must map to a value that "
             "has the form 'username:password'. Defaults to '.secrets.json'"))
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     with open(args.auth_json) as auth_json_file:
         auth_data = json.load(auth_json_file)
