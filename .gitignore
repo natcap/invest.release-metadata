@@ -175,3 +175,6 @@ cython_debug/
 
 # Ignore local conda/mamba/venv environments.
 env*
+
+# Ignore local secrets file
+.secrets.json

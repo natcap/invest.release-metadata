@@ -91,13 +91,13 @@ def main():
         )
     )
     parser.add_argument(
-        '--auth-json', default=".env.json", help=(
+        '--auth-json', default=".secrets.json", help=(
             "The filepath to a json file containing usernames and passwords "
             "for authenticating into the Fabrican instance.  The JSON object "
             "in this file must have the key 'datacite_user' if accessing the "
             "production instance, and 'datacite_test_user' if accessing the "
             "test instance.  In both cases, the key must map to a value that "
-            "has the form 'username:password'. Defaults to '.env.json'"))
+            "has the form 'username:password'. Defaults to '.secrets.json'"))
 
     args = parser.parse_args()
 
