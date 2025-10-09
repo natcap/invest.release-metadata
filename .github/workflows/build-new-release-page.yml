@@ -30,8 +30,12 @@ jobs:
     execute:
         runs-on: ubuntu-latest
         env:
+            DATACITE_TEMPLATE: templates/datacite.json.template
             NEW_DATACITE_FILE: invest-releases/${{ inputs.version }}/datacite.json
+            HTML_TEMPLATE: templates/release.html.template
             NEW_HTML_FILE: html/${{ inputs.version }}.html
+            INDEX_HTML_TEMPLATE: templates/index.html.template
+            VERSION: ${{ inputs.version }}
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -41,8 +45,30 @@ jobs:
                   python-version: 3.13
             - name: Install dependencies
               run: pip install -r requirements.txt
-            #- name: Create new files in repo but don't overwrite
-            #   # Assume that if files already exist, they've been manually edited and should continue to be manually edited.
+            - name: Set env variables
+              run:
+                  echo "YEAR=$(date +%Y)" >> $GITHUB_ENV
+                  if [[ "${{ inputs.datacite_instance }}" = "test" ]]
+                  then
+                    TEST=1;
+                    DOI=https://doi.org/10.80394/natcap-invest-$VERSION
+                  else
+                    TEST=0;
+                    DOI=https://doi.org/10.60793/natcap-invest-$VERSION
+                  fi
+                  echo "USE_TEST_FABRICA=$TEST" >> $GITHUB_ENV
+
+            - name: Create new files in repo but don't overwrite
+              run:
+                  YEAR=$(date +%Y)
+                  if test -f ${{ env.NEW_DATACITE_FILE }}; then
+                    echo "File exists; not overwriting datacite file. ${{ env.NEW_DATACITE_FILE }}"
+                  else
+                    python render_json.py \
+                        --variable "version:${{ inputs.version }} year:$YEAR doi:$DOI" \
+                        --template-file ${{ env.DATACITE_TEMPLATE }} > ${{ env.NEW_DATACITE_FILE }}
+                  fi
+                  # TODO: render the index file
             - name: Commit new changes
               run: |
                   git add "$NEW_DATACITE_FILE" "$NEW_HTML_FILE" "html/index.html"
@@ -58,7 +84,7 @@ jobs:
                     # states and allowed actions.
                     PUBLISH="--publish"
                   fi
-                  if [[ "${{ inputs.datacite_instance }}" = "test" ]]
+                  if [[ $USE_TEST_FABRICA = 1 ]]
                   then
                     INSTANCE="--test"
                   fi
