@@ -88,8 +88,7 @@ def main(args=None):
     # problem to have keys here that aren't used by a given template.
     doi = f'10.60793/natcap-invest-{version}'
     template_data = {
-        'versions': get_versions_and_dates() + [
-            {'version': version, 'date': publication_date}],
+        'versions': get_versions_and_dates(),
         'version': version,
         'year': str(date.year),
         'date': date.strftime('%Y-%m-%d'),
@@ -97,7 +96,16 @@ def main(args=None):
         'doi_url': f'https://doi.org/{doi}',
     }
 
-    # template, target
+    # don't re-add a version to the list that is already in the list.
+    if version not in set(d['version'] for d in template_data['versions']):
+        template_data['versions'] += [
+            {'version': version, 'date': publication_date}]
+
+    # always sort the versions
+    template_data['versions'] = sorted(
+        template_data['versions'], key=lambda d: d['version'])
+
+    # tuples are (template_filename, target_filepath)
     files_to_process = [
             ('datacite.json.template', target_datacite),
             ('index.html.template', target_index_html),
