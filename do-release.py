@@ -4,10 +4,10 @@ import logging
 import os
 import sys
 
-from jinja2 import Template
+import jinja2
 
-logging.basicConfig(level=logging.WARNING)
-LOGGER = logging.getLogger(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(os.path.basename(__file__))
 CWD = os.path.dirname(__file__)
 TEMPLATES_DIR = os.path.join(CWD, 'templates')
 RELEASES_DIR = os.path.join(CWD, 'invest-releases')
@@ -19,8 +19,13 @@ def get_versions_and_dates():
     for release_dir in os.listdir(RELEASES_DIR):
         datacite_file = os.path.join(
             RELEASES_DIR, release_dir, 'datacite.json')
-        with open(datacite_file) as datacite_fp:
-            datacite_json = json.load(datacite_fp)['data']['attributes']
+        LOGGER.info(f"Trying to process datacite file {datacite_file}")
+        try:
+            with open(datacite_file) as datacite_fp:
+                datacite_json = json.load(datacite_fp)['data']['attributes']
+        except FileNotFoundError:
+            LOGGER.info(f"Didn't find {datacite_file} inside {release_dir}; skipping")
+            continue
 
         data = {}
         try:
@@ -33,6 +38,7 @@ def get_versions_and_dates():
         data['date'] = datacite_json['dates']['date']
 
         version_data.append(data)
+    return version_data
 
 
 def render_jinja(source_file: str, context: dict):
@@ -49,8 +55,9 @@ def render_jinja(source_file: str, context: dict):
     Returns:
         ``rendered_text``, a string.
     """
+    environment = jinja2.Environment(undefined=jinja2.StrictUndefined)
     with open(source_file) as source_fp:
-        template = Template(source_fp.read())
+        template = environment.from_string(source_fp.read())
     rendered_text = template.render(context)
     return rendered_text
 
@@ -96,8 +103,14 @@ def main(args=None):
     for template_file, target_file in files_to_process:
         LOGGER.info(f'Rendering template to {target_file}')
         template_file = os.path.join(TEMPLATES_DIR, template_file)
-        with open(target_file, 'w') as target_fp:
-            target_fp.write(render_jinja(template_file, template_data))
+
+        try:
+            with open(target_file, 'w') as target_fp:
+                target_fp.write(render_jinja(template_file, template_data))
+        except jinja2.exceptions.UndefinedError as undefined_var:
+            LOGGER.exception(f"Could not find variable {undefined_var} in "
+                             f"{target_file}")
+            raise
 
 
 if __name__ == '__main__':
