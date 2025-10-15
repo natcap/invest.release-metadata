@@ -4,7 +4,7 @@
         "attributes": {
             "version": "{{ version }}",
             "url": "https://natcap.github.io/invest.release-metadata/{{ version }}.html",
-            "doi": "10.60793/natcap-invest-{{ version }}",
+            "doi": "{{ doi }}",
             "creators": [
                 {
                     "creatorName": "Natural Capital Project",

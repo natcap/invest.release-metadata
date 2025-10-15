@@ -86,12 +86,15 @@ def main(args=None):
 
     # we have the same kinds of variable names across files and it's not a
     # problem to have keys here that aren't used by a given template.
+    doi = f'10.60793/natcap-invest-{version}'
     template_data = {
         'versions': get_versions_and_dates() + [
             {'version': version, 'date': publication_date}],
         'version': version,
         'year': str(date.year),
         'date': date.strftime('%Y-%m-%d'),
+        'doi': doi,
+        'doi_url': f'https://doi.org/{doi}',
     }
 
     # template, target
