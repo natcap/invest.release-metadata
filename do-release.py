@@ -1,3 +1,6 @@
+# TODO: Add link checking to all of the hyperlinks - ensure files exist.
+
+import argparse
 import datetime
 import json
 import logging
@@ -63,13 +66,17 @@ def render_jinja(source_file: str, context: dict):
 
 
 def main(args=None):
-    # Args: version
-    # Args: publication date (ISO)
-    # Args: --overwrite
+    parser = argparse.ArgumentParser(
+        prog=os.path.basename(__file__),
+        description="Create all files for a DOI release from templates.",
+    )
+    parser.add_argument('version', help="The new version being released")
+    parser.add_argument('date', 'The release date, in the form YYYY-MM-DD')
 
-    version = '3.17.0'
-    publication_date = '2025-08-09'
-    overwrite = True
+    args = parser.parse_args(args)
+
+    version = args.version.strip()
+    publication_date = args.date.strip()
 
     # Fails if the date format isn't in ISO
     date = datetime.date.fromisoformat(publication_date)
