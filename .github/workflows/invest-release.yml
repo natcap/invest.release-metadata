@@ -11,6 +11,7 @@ on:
                 description: The target DataCite Fabrica instance.
                 required: true
                 default: 'test'
+                type: choice
                 options:
                     - test
                     - production
