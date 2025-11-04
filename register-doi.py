@@ -58,6 +58,10 @@ def register(datacite_json_path, endpoint, auth_string, prefix, publish):
     except KeyError:
         datacite_json['data']['attributes']['prefix'] = prefix
 
+    # Per the datacite docs, if "event": "publish" is not included, a draft
+    # record will be created.  This could be updated to a findable DOI with a
+    # second update to update the DOI state.  Docs link:
+    # https://support.datacite.org/docs/api-create-dois#create-a-findable-doi-or-a-draft-record
     if publish:
         datacite_json['data']['attributes']['event'] = "publish"
 
