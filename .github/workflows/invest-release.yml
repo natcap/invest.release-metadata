@@ -1,6 +1,27 @@
 name: Create InVEST Release DOI
 
 on:
+    workflow_call:  # allow this workflow to be called from other workflows.
+        inputs:
+            # TODO: is there a way to share these inputs between workflow_call
+            # and workflow_dispatch?
+            version:
+                description: The InVEST version for which we're creating a DOI
+                required: true
+                type: string
+            datacite_instance:
+                description: The target DataCite Fabrica instance.
+                required: true
+                default: 'test'
+                type: choice
+                options:
+                    - test
+                    - production
+            publish:
+                description: If checked, DOI will be published and immutable.  Metadata is always mutable.
+                required: false
+                type: boolean
+
     workflow_dispatch:
         inputs:
             version:
