@@ -110,7 +110,9 @@ def main(args=None):
         '--publish', action='store_true', help=(
             'Whether to publish the DOI on the target datacite instance. '
             'Using --publish will make the DOI findable and permanent. '
-            'A published DOI cannot be deleted.  See '
+            'A published DOI cannot be deleted. If this flag is not provided, '
+            'a "draft" DOI (which is not findable and can be deleted) is '
+            ' created. See '
             'https://support.datacite.org/docs/doi-states for information '
             "about DataCite's DOI states."
         )
