@@ -118,18 +118,30 @@ def main(args=None):
         )
     )
     parser.add_argument(
-        '--auth-json', default=".secrets.json", help=(
+        '--auth', default=".secrets.json", help=(
             "The filepath to a json file containing usernames and passwords "
             "for authenticating into the Fabrican instance.  The JSON object "
             "in this file must have the key 'datacite_user' if accessing the "
             "production instance, and 'datacite_test_user' if accessing the "
             "test instance.  In both cases, the key must map to a value that "
-            "has the form 'username:password'. Defaults to '.secrets.json'"))
+            "has the form 'username:password'. If the value passed is 'ENV', "
+            "the environment variables 'DATACITE_USER_PASS' and "
+            "'DATACITE_TEST_USER_PASS' must be provided for access to the "
+            "production and test datacite Fabrica instances, respectively. "
+            "These environment variables must have the form "
+            "'username:password'. Defaults to '.secrets.json'"))
 
     args = parser.parse_args(args)
 
-    with open(args.auth_json) as auth_json_file:
-        auth_data = json.load(auth_json_file)
+    if args.auth == 'ENV':
+        auth_data = {
+            "datacite_user": os.environ.get('DATACITE_USER_PASS', ''),
+            "datacite_test_user": os.environ.get(
+                'DATACITE_TEST_USER_PASS', '')
+        }
+    else:
+        with open(args.auth) as auth_json_file:
+            auth_data = json.load(auth_json_file)
 
     if args.test:
         endpoint = 'https://api.test.datacite.org'

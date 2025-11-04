@@ -97,6 +97,9 @@ jobs:
               run: git push origin main
 
             - name: Create the DOI on DataCite
+              env:
+                  DATACITE_USER_PASS: "${{ secrets.DATACITE_USER }}:${{ secrets.DATACITE_USER_PASS }}"
+                  DATACITE_TEST_USER_PASS: "${{ secrets.DATACITE_TEST_USER }}:${{ secrets.DATACITE_TEST_USER_PASS }}"
               run: |
                   if [[ ${{ inputs.publish }} ]]
                   then
@@ -109,4 +112,4 @@ jobs:
                   then
                     INSTANCE="--test"
                   fi
-                  python register-doi.py $INSTANCE $PUBLISH $NEW_DATACITE_FILE
+                  python register-doi.py --auth=ENV $INSTANCE $PUBLISH $NEW_DATACITE_FILE
