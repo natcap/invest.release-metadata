@@ -70,8 +70,10 @@ def main(args=None):
         prog=os.path.basename(__file__),
         description="Create all files for a DOI release from templates.",
     )
-    parser.add_argument('version', help="The new version being released")
-    parser.add_argument('date', 'The release date, in the form YYYY-MM-DD')
+    parser.add_argument(
+        'version', help="The new version being released")
+    parser.add_argument(
+        'date', help='The release date, in the form YYYY-MM-DD')
 
     args = parser.parse_args(args)
 
@@ -132,4 +134,4 @@ def main(args=None):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main(sys.argv[1:])
