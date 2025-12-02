@@ -1,0 +1,98 @@
+{
+    "data": {
+        "type": "dois",
+        "attributes": {
+            "version": "3.17.2",
+            "url": "https://natcap.github.io/invest.release-metadata/3.17.2.html",
+            "doi": "10.60793/natcap-invest-3.17.2",
+            "creators": [
+                {
+                    "creatorName": "Natural Capital Project",
+                    "_url": "https://naturalcapitalproject.stanford.edu",
+                    "nameType": "Organizational",
+                    "affiliation": [
+                        {
+                            "_name": "Stanford University",
+                            "_url": "https://naturalcapitalproject.stanford.edu",
+                            "affiliationIdentifier": "https://ror.org/00f54p054",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "Research Center for Eco-Environmental Sciences, Chinese Academy of Sciences",
+                            "_url": "http://english.rcees.cas.cn/",
+                            "affiliationIdentifier": "https://ror.org/03rpsvy57",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "Royal Swedish Academy of Sciences",
+                            "_url": "https://www.kva.se/en/",
+                            "affiliationIdentifier": "https://ror.org/00j62qv07",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "Stockholm Resilience Centre",
+                            "_url": "https://www.stockholmresilience.org/",
+                            "affiliationIdentifier": "https://ror.org/0145rpw38",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "The Nature Conservancy",
+                            "_url": "https://www.nature.org/en-us/",
+                            "affiliationIdentifier": "https://ror.org/0563w1497",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "University of Minnesota",
+                            "_url": "https://natcapteems.umn.edu/",
+                            "affiliationIdentifier": "https://ror.org/017zqws13",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        },
+                        {
+                            "_name": "World Wildlife Fund",
+                            "_url": "https://www.worldwildlife.org/",
+                            "affiliationIdentifier": "https://ror.org/011590k05",
+                            "affiliationIdentifierScheme": "ROR",
+                            "schemeURI": "https://ror.org"
+                        }
+                    ]
+                }
+            ],
+            "titles": [
+                {
+                    "lang": "en",
+                    "title": "InVEST 3.17.2"
+                },
+                {
+                    "lang": "en",
+                    "title": "Integrated Valuation of Ecosystem Services and Tradeoffs",
+                    "titleType": "Subtitle"
+                }
+            ],
+            "publisher": "GitHub",
+            "publicationYear": 2025,
+            "dates": {
+                "date": "2025-12-02",
+                "dateType": "Issued"
+            },
+            "rightsList": [
+                {
+                    "rights": "Apache License, Version 2.0",
+                    "rightsUri": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+                    "schemeUri": "https://spdx.org/licenses/",
+                    "rightsIdentifier": "Apache-2.0",
+                    "rightsIdentifierScheme": "SPDX"
+                }
+            ],
+            "types": {
+                "resourceType": "Software Package",
+                "resourceTypeGeneral": "Software"
+            }
+        }
+    }
+}
