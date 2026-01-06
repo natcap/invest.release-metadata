@@ -21,7 +21,8 @@
 
             body div#revisioninfo {
                 color: #BBB;  # NatCap 80% black;
-
+                padding-top: 2em !important;
+                padding-bottom: 2em;
             }
 
         </style>
@@ -47,15 +48,12 @@
             <div id="revisioninfo">
                 <div class="row">
                     <div class="col">
-                        <img class="float-start" style="max-width:40%" src="natcaplogo2024.png"/>
+                        <img class="float-start" style="max-width:40%" src="natcap-alliance-2026.png"/>
                     </div>
                     <div class="col text-end">
                         <em class="">
-                            <br/>
-                            <br/>
-                            <br/>
                             InVEST<sup>®</sup> DOI Landing Page<br/>
-                            Revision 1.0, updated 2025-05-28
+                            Revision 1.1, updated 2026-01-05
                         </em>
                     </div>
                 </div>
