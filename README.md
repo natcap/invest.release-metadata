@@ -17,6 +17,24 @@ entities as possible.  Increasingly, these persistent identifiers are useful
 for indexes that link entities, allowing for easier identification of the
 impact of NatCap, our software, and our networks.
 
+## How to Create DOIs with This Tooling
+
+### Option 1: Use GHA
+
+Visit https://github.com/natcap/invest.release-metadata/actions/workflows/invest-release.yml
+and run the `workflow_dispatch` trigger.
+
+### Option 2: Use These Local Files
+
+Both scripts have `argparse` interfaces, so feel free to use `--help` to better
+understand the CLI options available to you.
+```shell
+python do-release.py <version> <release-date>
+python register-doi.py <version>
+
+
+# Overall Idea
+
 ## So here's the plan
 
 Our first release of DOIs for InVEST will leave binary artifacts where they
