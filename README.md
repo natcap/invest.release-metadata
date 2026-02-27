@@ -19,6 +19,13 @@ impact of NatCap, our software, and our networks.
 
 ## How to Create DOIs with This Tooling
 
+I recommend creating a separate environment that includes all requirements:
+```
+python -m venv create env
+./env/bin/pip install -r requirements.txt
+source ./env/bin/activate
+```
+
 ### Option 1: Use GHA
 
 Visit https://github.com/natcap/invest.release-metadata/actions/workflows/invest-release.yml
