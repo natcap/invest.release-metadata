@@ -10,13 +10,9 @@ on:
                 required: true
                 type: string
             datacite_instance:
-                description: The target DataCite Fabrica instance.
+                description: The target DataCite Fabrica instance, either "test" or "production".
                 required: true
-                default: 'test'
-                type: choice
-                options:
-                    - test
-                    - production
+                type: string
             publish:
                 description: If checked, DOI will be published and immutable.  Metadata is always mutable.
                 required: false
