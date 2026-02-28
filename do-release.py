@@ -5,6 +5,7 @@ import datetime
 import json
 import logging
 import os
+import subprocess
 import sys
 
 import jinja2
@@ -74,11 +75,17 @@ def main(args=None):
         'version', help="The new version being released")
     parser.add_argument(
         'date', help='The release date, in the form YYYY-MM-DD')
+    parser.add_argument(
+        '--no-add', action='store_true', help=('Do not add new files to git'))
+    parser.add_argument(
+        '--no-commit', action='store_true', help="Do not commit new files to git")
 
     args = parser.parse_args(args)
 
     version = args.version.strip()
     publication_date = args.date.strip()
+    add_to_git = not args.no_add
+    commit_files = not args.no_commit
 
     # Fails if the date format isn't in ISO
     date = datetime.date.fromisoformat(publication_date)
@@ -131,6 +138,15 @@ def main(args=None):
             LOGGER.exception(f"Could not find variable {undefined_var} in "
                              f"{target_file}")
             raise
+
+        if add_to_git:
+            subprocess.run(["git", "add", target_file])
+
+        if commit_files:
+            commit_msg = (
+                f"[Auto] adding files for the {version} ({publication_date}) "
+                "InVEST release.")
+            subprocess.run(["git", "commit", "-m", commit_msg])
 
 
 if __name__ == '__main__':
